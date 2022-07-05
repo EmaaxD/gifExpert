@@ -70,6 +70,13 @@ export const GifsProvider = ({ children }) => {
     }
   };
 
+  const handleRemoveGifs = (idGroupGif) => {
+    dispatch({
+      type: REMOVE_GIFS,
+      payload: idGroupGif,
+    });
+  };
+
   return (
     <gifContext.Provider
       value={{
@@ -78,6 +85,7 @@ export const GifsProvider = ({ children }) => {
         gifs: state.gifs,
         error: state.error,
         handleGetGifs,
+        handleRemoveGifs,
       }}
     >
       {children}

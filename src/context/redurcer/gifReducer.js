@@ -35,7 +35,7 @@ export const gifReducer = (state = initialState, actions) => {
     case REMOVE_GIFS:
       return {
         ...state,
-        gifs: state.gifs.filter((item) => item.id !== actions.payload.id),
+        gifs: state.gifs.filter((item) => item.id !== actions.payload),
       };
 
     default:

@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import { TrashIcon } from "@heroicons/react/outline";
 import Fade from "react-reveal/Fade";
+
+import { gifContext } from "../../context/actions/GifsProvider";
 
 export const TitlteApp = () => {
   return (
@@ -16,7 +19,9 @@ export const TitlteApp = () => {
   );
 };
 
-export const TitleCardGif = ({ text }) => {
+export const TitleCardGif = ({ idGroupGif, text }) => {
+  const { gifs, handleRemoveGifs } = useContext(gifContext);
+
   return (
     <>
       <Fade right>
@@ -24,9 +29,16 @@ export const TitleCardGif = ({ text }) => {
           <h4 className="text-black text-2xl md:text-lg font-semibold first-letter:uppercase">
             {text}
           </h4>
-          <button type="button">
-            <TrashIcon className="w-5 h-5 text-red-500" />
-          </button>
+
+          {gifs.length > 1 && (
+            <button
+              type="button"
+              className="w-fit bg-red-500 p-2 rounded-full shadow-md transition-all hover:shadow-lg"
+              onClick={() => handleRemoveGifs(idGroupGif)}
+            >
+              <TrashIcon className="w-5 h-5 text-white" />
+            </button>
+          )}
         </div>
       </Fade>
     </>
